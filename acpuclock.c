@@ -24,17 +24,18 @@
  *
  */
 
-#define OVERCLOCK_614400
-#define OVERCLOCK_633600
+//#define OVERCLOCK_614400
+//#define OVERCLOCK_633600
 #define OVERCLOCK_652800
 //#define OVERCLOCK_672000
-//#define OVERCLOCK_691200
+#define OVERCLOCK_691200
 //#define OVERCLOCK_710400
-//#define OVERCLOCK_729600
+#define OVERCLOCK_729600
 //#define OVERCLOCK_748800
 //#define OVERCLOCK_768000
 
-#define UNDERCLOCK_61250
+#define UNDERCLOCK_61440
+#define UNDERCLOCK_49152
 
 #include <linux/version.h>
 #include <linux/kernel.h>
@@ -58,6 +59,7 @@
 #include "acpuclock.h"
 #include "socinfo.h"
 
+//test
 
 #define A11S_CLK_CNTL_ADDR (MSM_CSR_BASE + 0x100)
 #define A11S_CLK_SEL_ADDR (MSM_CSR_BASE + 0x104)
@@ -195,8 +197,11 @@ static struct clkctl_acpu_speed pll0_196_pll1_960_pll2_1056[] = {
 /* 7x27 normal with GSM capable modem */
 static struct clkctl_acpu_speed pll0_245_pll1_960_pll2_1200[] = {
 	{ 0, 19200, ACPU_PLL_TCXO, 0, 0, 19200, 0, 0, 30720 },
-#ifdef UNDERCLOCK_61250
-	{ 1, 61250, ACPU_PLL_0, 4, 3,  30625, 1, 2,  30720 },
+#ifdef UNDERCLOCK_49152
+	{ 1,  49152, ACPU_PLL_0, 4, 4,  24576, 1, 2,  30720 },
+#endif
+#ifdef UNDERCLOCK_61440
+	{ 1,  61440, ACPU_PLL_0, 4, 3,  30720, 1, 2,  30720 },
 #endif
 	{ 0, 120000, ACPU_PLL_1, 1, 7,  60000, 1, 3,  61440 },
 	{ 1, 122880, ACPU_PLL_0, 4, 1,  61440, 1, 3,  61440 },
